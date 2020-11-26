@@ -2,7 +2,24 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+First, add next.config.js to the root of the folder project :
+
+````bash
+module.exports = {
+	env: {
+		MONGO_URI: "mongodb://localhost:27017/YourDataBase",
+	},
+};
+
+
+
+Second, add packages to the project:
+
+```bash
+npm install
+````
+
+Third, run the development server:
 
 ```bash
 npm run dev
