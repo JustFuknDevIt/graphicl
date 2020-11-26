@@ -1,23 +1,23 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Made with GraphQl Server in Next API Serverless, Mongoose for handle local database and React for the front.
 
 ## Getting Started
 
 First, add next.config.js to the root of the folder project :
 
-````bash
+```bash
 module.exports = {
 	env: {
 		MONGO_URI: "mongodb://localhost:27017/YourDataBase",
 	},
 };
-
-
+```
 
 Second, add packages to the project:
 
 ```bash
 npm install
-````
+```
 
 Third, run the development server:
 
