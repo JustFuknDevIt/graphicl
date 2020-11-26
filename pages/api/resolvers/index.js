@@ -1,30 +1,36 @@
-import axios from "axios";
+import bcrypt from "bcryptjs";
+import User from "database/models/user";
 
-export const resolvers = {
+const resolvers = {
 	Query: {
 		getUsers: async () => {
-			try {
-				const users = await axios.get("https://api.github.com/users");
-				return users.data.map(({ id, login, avatar_url }) => ({
-					id,
-					login,
-					avatar_url,
-				}));
-			} catch (error) {
-				throw error;
-			}
+			const foundUsers = await User.find();
+			return foundUsers;
 		},
-		getUser: async (_, args) => {
-			try {
-				const user = await axios.get(`https://api.github.com/users/${args.name}`);
-				return {
-					id: user.data.id,
-					login: user.data.login,
-					avatar_url: user.data.avatar_url,
-				};
-			} catch (error) {
-				throw error;
-			}
+		getUser: async (_, { email }) => {
+			const foundUser = await User.findOne({ email });
+			if (!foundUser) throw new Error("no user with this email");
+			return foundUser;
+		},
+	},
+
+	Mutation: {
+		registerUser: async (_, { email, name, password }) => {
+			const foundUser = await User.findOne({ email });
+			if (foundUser) throw new Error("Email already registered");
+
+			const passwordSalt = await bcrypt.genSalt(10);
+			const passwordHash = await bcrypt.hash(password, passwordSalt);
+
+			const newUser = await User.create({
+				email,
+				name,
+				passwordHash,
+			});
+
+			return newUser;
 		},
 	},
 };
+
+export default resolvers;
