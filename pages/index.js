@@ -13,6 +13,8 @@ export default function Home() {
 				<h1 className={styles.title}>
 					Welcome to <a href="https://nextjs.org">Next.js!</a>
 				</h1>
+
+				<h2 className={styles.title}>Go to the folder play with your GraphQL API!</h2>
 			</main>
 
 			<footer className={styles.footer}>
