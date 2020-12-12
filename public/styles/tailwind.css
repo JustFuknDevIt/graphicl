@@ -1,0 +1,7 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@font-face {
+	font-family: "Cinzel-Variable-Font";
+	src: url("public/fonts/Cinzel-VariableFont.ttf");
+}

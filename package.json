@@ -9,13 +9,22 @@
   },
   "dependencies": {
     "apollo-server-micro": "^2.19.0",
+    "apollo-server-plugin-http-headers": "^0.1.4",
+    "autoprefixer": "^10.1.0",
     "bcryptjs": "^2.4.3",
     "graphql": "^15.4.0",
     "graphql-tag": "^2.11.0",
+    "jsonwebtoken": "^8.5.1",
     "micro": "^9.3.4",
     "mongoose": "^5.10.16",
+    "nanoid": "^3.1.20",
     "next": "10.0.3",
+    "next-fonts": "^1.5.1",
+    "next-images": "^1.6.2",
+    "postcss": "^8.2.1",
+    "postcss-import": "^13.0.0",
     "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "react-dom": "17.0.1",
+    "tailwindcss": "^2.0.1"
   }
 }

@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
+import { nanoid } from "nanoid";
 
 const UserSchema = new mongoose.Schema({
-	name: {
+	username: {
 		type: String,
 		required: true,
 	},
@@ -10,13 +11,33 @@ const UserSchema = new mongoose.Schema({
 		required: true,
 		unique: true,
 	},
-	passwordHash: {
-		type: String,
-		required: true,
-	},
-	dateCreated: {
+	createdDate: {
 		type: Date,
 		default: Date.now,
+		required: true,
+	},
+	refreshTokens: {
+		hash: {
+			type: String,
+		},
+		expiry: {
+			type: Date,
+		},
+	},
+	referalLink: {
+		type: String,
+		default: () => nanoid(),
+	},
+	godFather: {
+		type: String,
+		default: "toDefine",
+	},
+	affiliates: {
+		type: [String],
+	},
+	avatarOptions: {
+		type: Object,
+		required: true,
 	},
 });
 
