@@ -15,13 +15,6 @@ const postRegisterUser = async (email, username, godFather) => {
 		}
 	};
 
-	const userWallet = {
-		balance: 0,
-		earnedByClaim: 0,
-		earnedByBets: 0,
-		earnedByReferals: 0,
-	};
-
 	const temporaryToken = nanoid();
 	const refreshTokenExpiry = new Date(
 		Date.now() + parseInt(process.env.REFRESH_TOKEN_EXPIRY_SHORT) * 1000
@@ -30,7 +23,6 @@ const postRegisterUser = async (email, username, godFather) => {
 	const newUser = await User.create({
 		email,
 		username,
-		userWallet,
 		godFather: isGodFather(),
 		avatarOptions: await getRandomAvatarOptions(),
 		refreshTokens: { hash: temporaryToken, expiry: refreshTokenExpiry },
