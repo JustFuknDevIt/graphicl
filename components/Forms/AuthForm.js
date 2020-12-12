@@ -10,7 +10,26 @@ const AuthForm = ({ type }) => {
 	const handleSignIn = async (event) => {
 		event.preventDefault();
 		const { email, username } = event.target.elements;
-		console.log({ email: email.value, username: username.value });
+
+		const SIGNIN_USER = gql`
+			mutation SignInUserMutation($email: String!, $username: String!) {
+				signInUser(email: $email, username: $username)
+			}
+		`;
+		const variables = {
+			email: email.value,
+			username: username.value,
+		};
+
+		const data = await request("http://localhost:3000/api/graphql", SIGNIN_USER, variables).then(
+			(res) => {
+				let message = res.signInUser;
+				setMessage(message);
+				return message;
+			}
+		);
+
+		return data;
 	};
 
 	const handleRegister = async (event) => {

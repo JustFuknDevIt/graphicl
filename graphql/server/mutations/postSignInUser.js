@@ -3,8 +3,6 @@ import sendMail from "lib/serverMail";
 import { nanoid } from "nanoid";
 
 const postSignInUser = async (email, username) => {
-	{
-		/* 
 	const foundUser = await User.findOne({ email });
 	if (!foundUser) return "Email not exist, please register";
 	if (foundUser.username != username) return "user not match with email, please retry !";
@@ -26,8 +24,6 @@ const postSignInUser = async (email, username) => {
 	return newSignedInUser
 		? "Hey bro ! Check your mail to finish the Signin"
 		: "Hummm..someting went wrong with your SignIn!";
-	*/
-	}
 };
 
 export default postSignInUser;
