@@ -1,5 +1,5 @@
 import User from "database/models/user";
-import sendMail from "utils/serverMail";
+import sendMail from "lib/serverMail";
 import { nanoid } from "nanoid";
 
 const postSignInUser = async (email, username) => {

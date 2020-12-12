@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { Title } from "components/Typography/index";
+import { AuthLinkButton } from "components/CTA";
 
 export default function Home() {
 	return (
@@ -9,8 +10,12 @@ export default function Home() {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
-			<main>
+			<main className="h-2/5 flex flex-col justify-around">
 				<Title>Welcome to Graphicl !</Title>
+				<div className="flex flex-row justify-around w-full p3">
+					<AuthLinkButton link="/authentication/signin">Sign In</AuthLinkButton>
+					<AuthLinkButton link="/authentication/register">Register</AuthLinkButton>
+				</div>
 			</main>
 		</div>
 	);
