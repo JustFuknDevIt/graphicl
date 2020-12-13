@@ -3,17 +3,9 @@ import sendMail from "lib/serverMail";
 import getRandomAvatarOptions from "lib/getRandomAvatar";
 import { nanoid } from "nanoid";
 
-const postRegisterUser = async (email, username, godFather) => {
+const postRegisterUser = async (email, username) => {
 	const foundUser = await User.findOne({ email });
 	if (foundUser) return "Email already registered";
-
-	const isGodFather = () => {
-		if (!godFather) {
-			return null;
-		} else {
-			return godFather;
-		}
-	};
 
 	const temporaryToken = nanoid();
 	const refreshTokenExpiry = new Date(
@@ -23,7 +15,6 @@ const postRegisterUser = async (email, username, godFather) => {
 	const newUser = await User.create({
 		email,
 		username,
-		godFather: isGodFather(),
 		avatarOptions: await getRandomAvatarOptions(),
 		refreshTokens: { hash: temporaryToken, expiry: refreshTokenExpiry },
 	});

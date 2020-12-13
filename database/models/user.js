@@ -24,17 +24,6 @@ const UserSchema = new mongoose.Schema({
 			type: Date,
 		},
 	},
-	referalLink: {
-		type: String,
-		default: () => nanoid(),
-	},
-	godFather: {
-		type: String,
-		default: "toDefine",
-	},
-	affiliates: {
-		type: [String],
-	},
 	avatarOptions: {
 		type: Object,
 		required: true,

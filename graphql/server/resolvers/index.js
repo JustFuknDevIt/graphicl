@@ -18,20 +18,20 @@ const resolvers = {
 	},
 
 	Mutation: {
-		registerUser: async (_, { email, username, godFather }) => {
-			const newUser = await postRegisterUser(email, username, godFather);
+		registerUser: async (_, { email, username }) => {
+			const newUser = await postRegisterUser(email, username);
 			return newUser;
 		},
 		signInUser: async (_, { email, username }) => {
 			const newUser = await postSignInUser(email, username);
 			return newUser;
 		},
-		finishAuthUser: async (_, { temporaryToken, setCookie }) => {
-			const newUser = await postFinishAuthUser(temporaryToken, setCookie);
+		finishAuthUser: async (_, { temporaryToken }) => {
+			const newUser = await postFinishAuthUser(temporaryToken);
 			return newUser;
 		},
-		signOutUser: async (_, { userId, req, setCookie }) => {
-			const newUser = await postSignOutUser(userId, req, setCookie);
+		signOutUser: async (_, { userId }) => {
+			const newUser = await postSignOutUser(userId);
 			return newUser;
 		},
 	},

@@ -24,9 +24,6 @@ const typeDefs = gql`
 		username: String!
 		email: String!
 		createdDate: Date
-		referalLink: String!
-		godFather: String
-		affiliates: [String]
 		avatarOptions: AvatarOptions
 	}
 
@@ -55,7 +52,7 @@ const typeDefs = gql`
 	}
 
 	type Mutation {
-		registerUser(email: String!, username: String! , godFather: String): String!
+		registerUser(email: String!, username: String!): String!
 		signInUser(email: String!, username: String!): String!
 		finishAuthUser(temporaryToken:String!):AuthPayload!
     signOutUser(userId: ID!): Boolean!
