@@ -1,8 +1,13 @@
 import Head from "next/head";
+import { useAuth } from "components/AuthProvider";
 import { Title } from "components/Typography/index";
 import { AuthLinkButton } from "components/CTA";
 
 export default function Home() {
+	const { authState } = useAuth();
+
+	console.log("authState in index : ");
+	console.log(authState);
 	return (
 		<div className="flex flex-col w-screen h-screen justify-center items-center">
 			<Head>

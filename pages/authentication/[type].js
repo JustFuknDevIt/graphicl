@@ -2,10 +2,22 @@ import { Big } from "components/Typography";
 import { request, gql } from "graphql-request";
 import AuthForm from "components/Forms/AuthForm";
 import Cookies from "cookies";
+import { useAuth } from "components/AuthProvider";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 const Authentication = ({ queryType, userId }) => {
 	console.log("userId outside get server side : ");
 	console.log(userId);
+	const { signIn } = useAuth();
+	const router = useRouter();
+
+	useEffect(() => {
+		if (userId != undefined && userId != null) {
+			signIn(userId);
+			router.push("/");
+		}
+	}, [userId]);
 
 	return (
 		<div className="flex flex-col w-screen h-screen justify-center items-center">
