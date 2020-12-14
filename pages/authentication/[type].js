@@ -7,13 +7,11 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 
 const Authentication = ({ queryType, userId }) => {
-	console.log("userId outside get server side : ");
-	console.log(userId);
 	const { signIn } = useAuth();
 	const router = useRouter();
 
 	useEffect(() => {
-		if (userId != undefined && userId != null) {
+		if (userId != null) {
 			signIn(userId);
 			router.push("/");
 		}
@@ -57,9 +55,6 @@ export async function getServerSideProps({ req, res, query }) {
 		};
 
 		await request("http://localhost:3000/api/graphql", Query, variables).then((payLoad) => {
-			console.log("payload in authpayload : ");
-			console.log(payLoad);
-
 			const token = payLoad.finishAuthUser.token;
 			const expires = payLoad.finishAuthUser.expires;
 			const id = payLoad.finishAuthUser.userId;

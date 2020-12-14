@@ -4,7 +4,7 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
 	const initialAuthState = {
-		userId: undefined,
+		userId: null,
 	};
 
 	const [authState, setAuthState] = useState(initialAuthState);
