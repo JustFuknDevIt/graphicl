@@ -1,6 +1,5 @@
 import { ApolloServer } from "apollo-server-micro";
 import httpHeadersPlugin from "apollo-server-plugin-http-headers";
-import jwt from "jsonwebtoken";
 import typeDefs from "graphql/server/schemas";
 import resolvers from "graphql/server/resolvers";
 import connectDb from "database/mongoose";
