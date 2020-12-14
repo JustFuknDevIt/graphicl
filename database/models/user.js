@@ -16,7 +16,7 @@ const UserSchema = new mongoose.Schema({
 		default: Date.now,
 		required: true,
 	},
-	refreshTokens: {
+	authToken: {
 		hash: {
 			type: String,
 		},

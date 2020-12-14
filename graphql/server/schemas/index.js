@@ -43,6 +43,7 @@ const typeDefs = gql`
 
 	type AuthPayload {
     token: String!
+		expires: Date!
     userId: ID!
   }
 

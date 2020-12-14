@@ -10,17 +10,8 @@ const apolloServer = new ApolloServer({
 	resolvers,
 	plugins: [httpHeadersPlugin],
 	context: async ({ req }) => {
+		// Header is in form 'Bearer <token>', grabbing the part after ' '
 		const token = req.headers.authorization?.split(" ")[1] || undefined;
-
-		const setCookies = [];
-		const setHeaders = [];
-
-		try {
-			const { user } = jwt.verify(token, process.env.JWT_SECRET);
-			return { req, setCookies, setHeaders, user };
-		} catch (error) {
-			return { setCookies, setHeaders, req };
-		}
 	},
 	playground: true,
 	introspection: true,

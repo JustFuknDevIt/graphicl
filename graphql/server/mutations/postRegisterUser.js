@@ -7,20 +7,20 @@ const postRegisterUser = async (email, username) => {
 	const foundUser = await User.findOne({ email });
 	if (foundUser) return "Email already registered";
 
-	const temporaryToken = nanoid();
-	const refreshTokenExpiry = new Date(
-		Date.now() + parseInt(process.env.REFRESH_TOKEN_EXPIRY_SHORT) * 1000
+	const authToken = nanoid();
+	const authTokenExpiry = new Date(
+		Date.now() + parseInt(process.env.AUTH_TOKEN_EXPIRY_SHORT) * 1000
 	);
 
 	const newUser = await User.create({
 		email,
 		username,
 		avatarOptions: await getRandomAvatarOptions(),
-		refreshTokens: { hash: temporaryToken, expiry: refreshTokenExpiry },
+		authToken: { hash: authToken, expiry: authTokenExpiry },
 	});
 
 	const method = "SignUp";
-	await sendMail(method, username, email, temporaryToken);
+	await sendMail(method, username, email, authToken);
 
 	return newUser
 		? "Hey bro ! Check your mail to finish the Signup"

@@ -1,61 +1,33 @@
 import { nanoid } from "nanoid";
-import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
 import User from "database/models/user";
 
-const postFinishAuthUser = async (temporaryToken, setCookies) => {
-	{
-		/*
-	const foundUser = await User.findOne({ "refreshTokens.hash": temporaryToken });
+const postFinishAuthUser = async (temporaryToken) => {
+	const foundUser = await User.findOne({ "authToken.hash": temporaryToken });
 
 	if (!foundUser) throw new Error("Fail to find User with this token.");
 
-	let isRefreshTokenValid = false;
+	let isAuthTokenValid = false;
 
-	const isMatch = temporaryToken === foundUser.refreshTokens.hash ? true : false;
-	const isValid = foundUser.refreshTokens.expiry > Date.now();
+	const isMatch = temporaryToken === foundUser.authToken.hash ? true : false;
+	const isValid = foundUser.authToken.expiry > Date.now();
 
 	if (isMatch && isValid) {
-		isRefreshTokenValid = true;
+		isAuthTokenValid = true;
 	}
 
-	if (!isRefreshTokenValid) throw new Error("Invalid refresh token");
+	if (!isAuthTokenValid) throw new Error("Invalid Auth token");
 
-	const payload = {
-		user: {
-			id: foundUser.id,
-		},
-	};
-
-	const token = await jwt.sign(payload, process.env.JWT_SECRET, {
-		expiresIn: parseInt(process.env.JWT_EXPIRY),
-	});
-
-	const refreshToken = nanoid();
-	const refreshTokenExpiry = new Date(
-		Date.now() + parseInt(process.env.REFRESH_TOKEN_EXPIRY_LONG) * 1000
+	const authToken = nanoid(42);
+	const authTokenExpiry = new Date(
+		Date.now() + parseInt(process.env.AUTH_TOKEN_EXPIRY_LONG) * 1000
 	);
 
-	const salt = await bcrypt.genSalt(10);
-	const refreshTokenHash = await bcrypt.hash(refreshToken, salt);
-
-	foundUser.refreshTokens.hash = refreshTokenHash;
-	foundUser.refreshTokens.expiry = refreshTokenExpiry;
+	foundUser.authToken.hash = authToken;
+	foundUser.authToken.expiry = authTokenExpiry;
 
 	await foundUser.save();
 
-	setCookies.push({
-		name: "refreshToken",
-		value: refreshToken,
-		options: {
-			...REFRESH_TOKEN_COOKIE_OPTIONS,
-			expires: refreshTokenExpiry,
-		},
-	});
-
-	return { userId: foundUser._id, token };
-	*/
-	}
+	return { token: authToken, expires: authTokenExpiry, userId: foundUser._id };
 };
 
 export default postFinishAuthUser;
