@@ -13,7 +13,7 @@ const Authentication = ({ queryType, userId }) => {
 	useEffect(() => {
 		if (userId != null) {
 			signIn(userId);
-			router.push("/");
+			router.push("/feedback");
 		}
 	}, [userId]);
 
@@ -62,7 +62,11 @@ export async function getServerSideProps({ req, res, query }) {
 			const cookies = new Cookies(req, res);
 			cookies.set("authToken", token, {
 				httpOnly: true, // true by default
-				expires: new Date(expires),
+				//secure : true,
+				//sameSite : strict
+			});
+			cookies.set("expires", expires, {
+				httpOnly: true, // true by default
 				//secure : true,
 				//sameSite : strict
 			});

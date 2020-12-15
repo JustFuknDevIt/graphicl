@@ -9,8 +9,23 @@ const apolloServer = new ApolloServer({
 	resolvers,
 	plugins: [httpHeadersPlugin],
 	context: async ({ req }) => {
-		// Header is in form 'Bearer <token>', grabbing the part after ' '
-		const token = req.headers.authorization?.split(" ")[1] || undefined;
+		const setCookies = [];
+		const setHeaders = [];
+
+		if (req.headers.cookie) {
+			const authToken = req.headers.cookie.split("; ")[0].split("=").pop();
+			const expiresToken = Date.parse(req.headers.cookie.split("; ")[1].split("=").pop());
+			const actualDate = Date.now();
+			const isExpired = actualDate > expiresToken;
+
+			if (isExpired) {
+				throw new Error("Your Token is Expired");
+			}
+
+			return { req, authToken, setCookies, setHeaders };
+		}
+
+		return { req, setCookies, setHeaders };
 	},
 	playground: true,
 	introspection: true,
