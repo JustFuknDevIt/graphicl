@@ -7,7 +7,6 @@ import postSignOutUser from "../mutations/postSignOutUser";
 const resolvers = {
 	Query: {
 		getUsers: async (_, {}, { authToken }) => {
-			console.log(authToken);
 			if (!authToken) {
 				throw new Error("You need to be Auth for this request ! Please sign in and retry !");
 			}

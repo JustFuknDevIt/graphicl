@@ -1,21 +1,11 @@
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
+import { GET_USERS } from "graphql/client/queries";
+import Link from "next/link";
 
 export const Feedback = ({}) => {
-	const GET_USERS = gql`
-		query getUsers {
-			getUsers {
-				username
-				createdDate
-				email
-				avatarOptions {
-					topType
-					hairColor
-				}
-			}
-		}
-	`;
-
-	const { loading, error, data } = useQuery(GET_USERS, { errorPolicy: "all" });
+	const { loading, error, data } = useQuery(GET_USERS, {
+		errorPolicy: "all",
+	});
 	if (error)
 		return (
 			<div>
@@ -26,9 +16,17 @@ export const Feedback = ({}) => {
 		);
 	if (loading) return <div>Loading</div>;
 
-	console.log(data);
-
-	return <div>Hello There {data.getUsers[0].username}!</div>;
+	if (data)
+		return (
+			<div>
+				List of Users :
+				{data &&
+					data.getUsers.map((user, i) => {
+						return <div key={i}>{user.username}</div>;
+					})}
+				<Link href="/">Go Home</Link>
+			</div>
+		);
 };
 
 export default Feedback;
