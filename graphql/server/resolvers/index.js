@@ -2,6 +2,8 @@ import User from "database/models/user";
 import postRegisterUser from "../mutations/postRegisterUser";
 import postSignInUser from "../mutations/postSignInUser";
 import postFinishAuthUser from "../mutations/postFinishAuthUser";
+import postUpdateUser from "../mutations/postUpdateUser";
+
 import postSignOutUser from "../mutations/postSignOutUser";
 
 const resolvers = {
@@ -37,6 +39,14 @@ const resolvers = {
 		signOutUser: async (_, { userId }) => {
 			const newUser = await postSignOutUser(userId);
 			return newUser;
+		},
+		updateUser: async (_, { userId, input }, { authToken }) => {
+			if (!authToken) {
+				throw new Error("You need to be Auth for this request ! Please sign in and retry !");
+			}
+
+			const updateUser = await postUpdateUser(userId, input);
+			return updateUser;
 		},
 	},
 };

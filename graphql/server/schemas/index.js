@@ -56,6 +56,7 @@ const typeDefs = gql`
 		registerUser(email: String!, username: String!): String!
 		signInUser(email: String!, username: String!): String!
 		finishAuthUser(temporaryToken:String!):AuthPayload!
+		updateUser(userId: ID!, input: UpdateUserInput): User!
     signOutUser(userId: ID!): Boolean!
 	}
 `;
