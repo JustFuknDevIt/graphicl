@@ -53,6 +53,7 @@ const Profile = ({ userId }) => {
 				const { username, email } = response.data.updateUser;
 				username && setUsername(username);
 				email && setEmail(email);
+				setEditView(!editView);
 			});
 		}
 	};
