@@ -7,7 +7,7 @@ export const Input = ({ type, name, required, placeholder, minLength, maxLength 
 			placeholder={placeholder}
 			minLength={minLength}
 			maxLength={maxLength}
-			className="w-3/5 h-8 bg-gray-200  rounded-full p-3 border border-transparent focus:outline-none focus:ring-2 focus:ring-gray-800 focus:border-transparent"
+			className="rounded-full py-1 px-3  flex justify-center items-center  border-gray-900 shadow-lg"
 		/>
 	);
 };

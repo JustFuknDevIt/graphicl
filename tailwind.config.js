@@ -9,7 +9,12 @@ module.exports = {
 			colors: {
 				lavender: {
 					blush: "#ffeaec",
+					default: "#B8BEDD",
 					web: "#F0E6EF",
+				},
+				button: {
+					cancel: "#CE2D4F",
+					save: "#9EE493",
 				},
 			},
 		},

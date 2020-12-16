@@ -14,3 +14,27 @@ export const GET_USERS = gql`
 		}
 	}
 `;
+
+export const GET_USER = gql`
+	query GetUserQuery($userId: ID!) {
+		getUser(userId: $userId) {
+			username
+			createdDate
+			email
+			avatarOptions {
+				topType
+				accessoriesType
+				hairColor
+				hatColor
+				facialHairType
+				facialHairColor
+				clotheType
+				clotheColor
+				eyeType
+				eyebrowType
+				mouthType
+				skinColor
+			}
+		}
+	}
+`;
