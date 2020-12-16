@@ -13,7 +13,7 @@ const Authentication = ({ queryType, userId }) => {
 	useEffect(() => {
 		if (userId != null) {
 			signIn(userId);
-			router.push("/feedback");
+			router.push("/home");
 		}
 	}, [userId]);
 

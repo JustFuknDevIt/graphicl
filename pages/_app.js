@@ -1,7 +1,8 @@
-import "public/styles/tailwind.css";
-import AuthProvider from "components/AuthProvider";
 import { ApolloProvider } from "@apollo/client";
 import { Client } from "lib/apolloClient";
+import AuthProvider from "components/AuthProvider";
+import Layout from "components/Layout";
+import "public/styles/tailwind.css";
 
 function MyApp({ Component, pageProps }) {
 	const apolloClient = Client;
@@ -9,7 +10,9 @@ function MyApp({ Component, pageProps }) {
 	return (
 		<ApolloProvider client={apolloClient}>
 			<AuthProvider>
-				<Component {...pageProps} />
+				<Layout>
+					<Component {...pageProps} />
+				</Layout>
 			</AuthProvider>
 		</ApolloProvider>
 	);

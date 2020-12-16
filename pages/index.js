@@ -1,4 +1,3 @@
-import Head from "next/head";
 import { useQuery } from "@apollo/client";
 import Link from "next/link";
 import { GET_USERS } from "graphql/client/queries";
@@ -23,11 +22,7 @@ export default function Home() {
 	if (loading) return <div>Loading</div>;
 
 	return (
-		<div className="flex flex-col w-screen h-screen justify-center items-center">
-			<Head>
-				<title>Graphicl Boilerplate</title>
-				<link rel="icon" href="/favicon.ico" />
-			</Head>
+		<>
 			{authState.userId == null ? (
 				<main className="h-2/5 flex flex-col justify-around">
 					<Title>Welcome to Graphicl !</Title>
@@ -55,6 +50,6 @@ export default function Home() {
 					)}
 				</main>
 			)}
-		</div>
+		</>
 	);
 }
