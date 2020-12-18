@@ -1,12 +1,16 @@
 import Switch from "components/Switch";
 import { useRouter } from "next/router";
 import { Big, Short } from "components/Typography";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 
 const Menu = () => {
 	const router = useRouter();
 	const [pathname, setPathName] = useState(router.pathname);
+
+	useEffect(() => {
+		setPathName(router.pathname);
+	}, [router.pathname]);
 
 	return (
 		<div className="w-full h-full flex flex-col items-center">

@@ -6,8 +6,9 @@ import { useAuth } from "components/AuthProvider";
 import { useRouter } from "next/router";
 
 const Switch = () => {
-	const { authState, signOut } = useAuth();
 	const router = useRouter();
+
+	const { authState, signOut } = useAuth();
 	const [signOutUser] = useMutation(SIGNOUT_USER);
 	const [toggleLogout, setToggleLogout] = useState(authState.userId ? false : true);
 
@@ -17,7 +18,6 @@ const Switch = () => {
 		toggleLogout &&
 			signOutUser({ variables: { userId: authState.userId } }).then((response) => {
 				const isLogout = response.data.signOutUser;
-				console.log("isLogout ? ", isLogout);
 				if (isLogout) {
 					signOut();
 					router.push("/");

@@ -7,8 +7,9 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 
 const Authentication = ({ queryType, userId }) => {
-	const { signIn } = useAuth();
 	const router = useRouter();
+
+	const { signIn } = useAuth();
 
 	useEffect(() => {
 		if (userId != null) {

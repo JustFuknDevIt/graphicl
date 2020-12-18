@@ -103,8 +103,8 @@ const Profile = ({ userId }) => {
 						</div>
 					) : (
 						<div className="h-1/5 flex flex-col items-center justify-around">
-							<Input type="text" name="username" placeholder={username} />
-							<Input type="email" name="email" placeholder={email} />
+							<Input type="text" name="username" placeholder={username} required />
+							<Input type="email" name="email" placeholder={email} required />
 						</div>
 					)}
 				</form>
