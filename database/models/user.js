@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { nanoid } from "nanoid";
 
 const UserSchema = new mongoose.Schema({
 	username: {
@@ -27,6 +26,10 @@ const UserSchema = new mongoose.Schema({
 	avatarOptions: {
 		type: Object,
 		required: true,
+	},
+	feedback: {
+		type: String,
+		default: null,
 	},
 });
 
