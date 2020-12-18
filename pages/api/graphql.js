@@ -8,7 +8,7 @@ const apolloServer = new ApolloServer({
 	typeDefs,
 	resolvers,
 	plugins: [httpHeadersPlugin],
-	context: async ({ req }) => {
+	context: async ({ req, res }) => {
 		const setCookies = [];
 		const setHeaders = [];
 
@@ -19,10 +19,10 @@ const apolloServer = new ApolloServer({
 			const isExpired = actualDate > expiresToken;
 
 			if (isExpired) {
-				throw new Error("Your Token is Expired");
+				throw new Error("Your Token is Expired, Please Sign In !");
 			}
 
-			return { req, authToken, setCookies, setHeaders };
+			return { req, res, authToken, setCookies, setHeaders };
 		}
 
 		return { req, setCookies, setHeaders };

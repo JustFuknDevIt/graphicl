@@ -22,3 +22,8 @@ export const UPDATE_USER = gql`
 		}
 	}
 `;
+export const SIGNOUT_USER = gql`
+	mutation PostSignOutUser($userId: ID!) {
+		signOutUser(userId: $userId)
+	}
+`;

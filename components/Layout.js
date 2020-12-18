@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useAuth } from "components/AuthProvider";
 import { Title, Short } from "components/Typography";
 import Profile from "components/Profile";
+import Menu from "components/Menu";
 
 const Layout = ({ children }) => {
 	const router = useRouter();
@@ -31,7 +32,9 @@ const Layout = ({ children }) => {
 					<div className="w-7/12 h-full flex flex-col justify-center items-center p4">
 						{children}
 					</div>
-					<div className="w-2/12 h-full flex flex-col justify-around items-center p-4 shadow-lg bg-lavender-web"></div>
+					<div className="w-2/12 h-full flex flex-col justify-around items-center p-4 shadow-lg bg-lavender-web">
+						<Menu />
+					</div>
 				</div>
 			)}
 		</>

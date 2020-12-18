@@ -16,6 +16,10 @@ module.exports = {
 					cancel: "#CE2D4F",
 					save: "#9EE493",
 				},
+				gunmetal: {
+					deep: "rgba(28, 48, 65, 1)",
+					nopacity: "rgba(28, 48, 65, 0.5)",
+				},
 			},
 		},
 		variants: {

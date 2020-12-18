@@ -1,9 +1,9 @@
+import Cookies from "cookies";
 import User from "database/models/user";
 import postRegisterUser from "../mutations/postRegisterUser";
 import postSignInUser from "../mutations/postSignInUser";
 import postFinishAuthUser from "../mutations/postFinishAuthUser";
 import postUpdateUser from "../mutations/postUpdateUser";
-
 import postSignOutUser from "../mutations/postSignOutUser";
 
 const resolvers = {
@@ -36,9 +36,31 @@ const resolvers = {
 			const newUser = await postFinishAuthUser(temporaryToken);
 			return newUser;
 		},
-		signOutUser: async (_, { userId }) => {
-			const newUser = await postSignOutUser(userId);
-			return newUser;
+		signOutUser: async (_, { userId }, { authToken, req, res }) => {
+			if (!authToken) {
+				throw new Error("You are not logged. Please Sign In !");
+			}
+			const result = await postSignOutUser(userId);
+
+			if (result) {
+				const cookies = new Cookies(req, res);
+				cookies.set("authToken", "", {
+					httpOnly: true, // true by default
+					expires: new Date(0),
+					//secure : true,
+					//sameSite : strict
+				});
+				cookies.set("expires", "", {
+					httpOnly: true, // true by default
+					expires: new Date(0),
+					//secure : true,
+					//sameSite : strict
+				});
+				cookies;
+				return true;
+			} else {
+				return false;
+			}
 		},
 		updateUser: async (_, { userId, input }, { authToken }) => {
 			if (!authToken) {
