@@ -1,7 +1,6 @@
 import { ApolloProvider } from "@apollo/client";
 import { Client } from "lib/apolloClient";
 import AuthProvider from "components/AuthProvider";
-import Layout from "components/Layout";
 import "public/styles/tailwind.css";
 
 function MyApp({ Component, pageProps }) {
@@ -10,9 +9,7 @@ function MyApp({ Component, pageProps }) {
 	return (
 		<ApolloProvider client={apolloClient}>
 			<AuthProvider>
-				<Layout>
-					<Component {...pageProps} />
-				</Layout>
+				<Component {...pageProps} />
 			</AuthProvider>
 		</ApolloProvider>
 	);

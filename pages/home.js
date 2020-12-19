@@ -1,15 +1,11 @@
-import { useAuth } from "components/AuthProvider";
-import { useRouter } from "next/router";
+import Layout from "components/Layout";
 
 const Home = ({}) => {
-	const { authState } = useAuth();
-	const userId = authState.userId;
-
-	if (userId) {
-		return <div>Bienvenue user id : {userId}</div>;
-	} else {
-		return <div>Acces unauthorisez</div>;
-	}
+	return (
+		<Layout>
+			<div>Bienvenue sur Graphicl</div>
+		</Layout>
+	);
 };
 
 export default Home;

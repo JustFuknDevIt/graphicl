@@ -12,24 +12,26 @@ const Authentication = ({ queryType, userId }) => {
 	const { signIn } = useAuth();
 
 	useEffect(() => {
-		if (userId != null) {
+		if (userId) {
 			signIn(userId);
 			router.push("/home");
 		}
 	}, [userId]);
 
 	return (
-		<div className="flex flex-col w-screen h-screen justify-center items-center">
-			<main className="h-2/5 flex flex-col justify-around">
-				{queryType === "finish" ? (
-					<Big>
-						Please wait until the redirect...
-						<br />
-					</Big>
-				) : (
-					<AuthForm type={queryType} />
-				)}
-			</main>
+		<div className="flex flex-col w-screen h-screen justify-center items-center bg-lavender-blush">
+			<div className="flex flex-col w-screen h-screen justify-center items-center">
+				<main className="h-2/5 flex flex-col justify-around">
+					{queryType === "finish" ? (
+						<Big>
+							Please wait until the redirect...
+							<br />
+						</Big>
+					) : (
+						<AuthForm type={queryType} />
+					)}
+				</main>
+			</div>
 		</div>
 	);
 };

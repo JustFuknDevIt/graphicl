@@ -13,16 +13,14 @@ const Switch = () => {
 	const [toggleLogout, setToggleLogout] = useState(authState.userId ? false : true);
 
 	const handleToggle = () => {
-		setToggleLogout(!toggleLogout);
-
-		toggleLogout &&
-			signOutUser({ variables: { userId: authState.userId } }).then((response) => {
-				const isLogout = response.data.signOutUser;
-				if (isLogout) {
-					signOut();
-					router.push("/");
-				}
-			});
+		signOutUser({ variables: { userId: authState.userId } }).then((response) => {
+			const isLogout = response.data.signOutUser;
+			if (isLogout) {
+				setToggleLogout(!toggleLogout);
+				signOut();
+				router.push("/");
+			}
+		});
 	};
 
 	return (

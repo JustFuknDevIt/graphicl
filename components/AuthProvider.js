@@ -4,6 +4,7 @@ const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
 	const initialAuthState = {
 		userId: null,
+		isAuth: false,
 	};
 
 	const [authState, setAuthState] = useState(initialAuthState);
@@ -12,6 +13,7 @@ const AuthProvider = ({ children }) => {
 		if (localStorage.getItem("userId") !== authState.userId) {
 			setAuthState({
 				userId: localStorage.getItem("userId"),
+				isAuth: localStorage.getItem("isAuth"),
 			});
 		}
 	}, [authState]);
@@ -19,9 +21,11 @@ const AuthProvider = ({ children }) => {
 	const signIn = (userId) => {
 		setAuthState({
 			userId,
+			isAuth: true,
 		});
 		if (typeof window !== "undefined") {
 			localStorage.setItem("userId", userId);
+			localStorage.setItem("isAuth", true);
 		}
 	};
 
@@ -29,6 +33,7 @@ const AuthProvider = ({ children }) => {
 		setAuthState(initialAuthState);
 		if (typeof window !== "undefined") {
 			localStorage.removeItem("userId");
+			localStorage.removeItem("isAuth");
 		}
 	};
 
