@@ -11,8 +11,11 @@ const Authentication = ({ queryType, userId, errorMessage }) => {
 	const router = useRouter();
 	const { signIn } = useAuth();
 
+	console.log("userId : ", userId);
+	console.log("errorMessage : ", errorMessage);
+
 	useEffect(() => {
-		if (userId) {
+		if (userId && !errorMessage) {
 			signIn(userId);
 			router.push("/home");
 		}
@@ -29,9 +32,7 @@ const Authentication = ({ queryType, userId, errorMessage }) => {
 									{errorMessage} <br />
 									<br />
 									<br />
-									<Link href="/authentication/signin">
-										<Regular>Retry to Sign In !</Regular>
-									</Link>
+									<Link href="/authentication/signin">Retry to Sign In !</Link>
 								</>
 							) : (
 								"Please wait until the redirect..."
@@ -97,7 +98,7 @@ export async function getServerSideProps({ req, res, query }) {
 	return {
 		props: {
 			queryType,
-			userId: token & !errorMessage ? userId : null,
+			userId: token && !errorMessage ? userId : null,
 			errorMessage: errorMessage ? errorMessage : null,
 		},
 	};
