@@ -13,7 +13,7 @@ export const Title = ({ children, color }) => {
 export const Big = ({ children, color, weight }) => {
 	return (
 		<p
-			className={`text-3xl font-Cinzel-Variable-Font ${
+			className={`text-center text-3xl font-Cinzel-Variable-Font ${
 				color ? color : "text-gunmetal-deep"
 			} ${weight}`}
 		>
@@ -24,7 +24,11 @@ export const Big = ({ children, color, weight }) => {
 
 export const Normal = ({ children, color }) => {
 	return (
-		<p className={`text-base font-Cinzel-Variable-Font ${color ? color : "text-gunmetal-deep"}`}>
+		<p
+			className={`text-center text-base font-Cinzel-Variable-Font ${
+				color ? color : "text-gunmetal-deep"
+			}`}
+		>
 			{children}
 		</p>
 	);
@@ -32,7 +36,11 @@ export const Normal = ({ children, color }) => {
 
 export const Short = ({ children, color }) => {
 	return (
-		<p className={`text-xs font-Cinzel-Variable-Font ${color ? color : "text-gunmetal-deep"}`}>
+		<p
+			className={`text-center text-xs font-Cinzel-Variable-Font ${
+				color ? color : "text-gunmetal-deep"
+			}`}
+		>
 			{children}
 		</p>
 	);
