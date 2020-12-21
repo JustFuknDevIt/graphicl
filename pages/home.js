@@ -11,8 +11,7 @@ const Home = ({}) => {
 		if (!authState.isAuth) {
 			router.push("/");
 		}
-	}),
-		[authState.isAuth];
+	}, [authState.isAuth]);
 
 	return (
 		authState.isAuth && (
@@ -28,7 +27,7 @@ const Home = ({}) => {
 				</Regular>
 				<Big>
 					The application includes a mail server that allows to forward the temporary identification
-					token used to authenticate the user
+					token used to authenticate the user.
 				</Big>
 				<Regular>On the front side we find the serverless Next.JS framework with React</Regular>
 				<a href="https://twitter.com/JustFuknDevIt">

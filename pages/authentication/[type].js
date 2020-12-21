@@ -1,4 +1,4 @@
-import { Big, Regular } from "components/Typography";
+import { Big } from "components/Typography";
 import { request, gql } from "graphql-request";
 import AuthForm from "components/Forms/AuthForm";
 import Cookies from "cookies";
@@ -9,17 +9,18 @@ import Link from "next/link";
 
 const Authentication = ({ queryType, userId, errorMessage }) => {
 	const router = useRouter();
-	const { signIn } = useAuth();
-
-	console.log("userId : ", userId);
-	console.log("errorMessage : ", errorMessage);
+	const { signIn, authState } = useAuth();
 
 	useEffect(() => {
+		if (authState.isAuth) {
+			router.push("/home");
+		}
+
 		if (userId && !errorMessage) {
 			signIn(userId);
 			router.push("/home");
 		}
-	}, [userId]);
+	}, [userId, authState.isAuth]);
 
 	return (
 		<div className="flex flex-col w-screen h-screen justify-center items-center bg-lavender-blush">
