@@ -8,14 +8,6 @@ import postSignOutUser from "../mutations/postSignOutUser";
 
 const resolvers = {
 	Query: {
-		getUsers: async (_, {}, { authToken }) => {
-			if (!authToken) {
-				throw new Error("You need to be Auth for this request ! Please sign in and retry !");
-			}
-
-			const foundUsers = await User.find();
-			return foundUsers;
-		},
 		getUser: async (_, { userId }) => {
 			const foundUser = await User.findOne({ _id: userId });
 			if (!foundUser) throw new Error("No User with this ID !");

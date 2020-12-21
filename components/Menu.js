@@ -1,6 +1,6 @@
 import Switch from "components/Switch";
 import { useRouter } from "next/router";
-import { Big, Short } from "components/Typography";
+import { Big, Short, Normal } from "components/Typography";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
@@ -24,18 +24,12 @@ const Menu = () => {
 					</a>
 				</Link>
 
-				<Link href="/feedback">
-					<a onClick={() => setPathName("/feedback")}>
-						<Big color={pathname != "/feedback" && "text-gunmetal-nopacity"}>Feedback</Big>
-					</a>
-				</Link>
-
 				<a
 					href="/api/graphql"
 					target="_blank"
 					className="flex flex-col items-center justify-around h-2/5"
 				>
-					<Short className="text-center">GraphQL PlayGround !</Short>
+					<Normal className="text-center">GraphQL PlayGround !</Normal>
 				</a>
 			</div>
 			<div className="py-12 w-full h-1/3 flex flex-col justify-center items-center">

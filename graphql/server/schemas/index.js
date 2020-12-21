@@ -21,8 +21,8 @@ const typeDefs = gql`
 
 	type User {
 		id: ID!
-		username: String!
-		email: String!
+		username: String
+		email: String
 		createdDate: Date
 		avatarOptions: AvatarOptions
 	}
@@ -48,7 +48,6 @@ const typeDefs = gql`
   }
 
 	type Query {
-		getUsers: [User]
 		getUser(userId: ID!): User!
 	}
 

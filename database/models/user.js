@@ -27,10 +27,6 @@ const UserSchema = new mongoose.Schema({
 		type: Object,
 		required: true,
 	},
-	feedback: {
-		type: String,
-		default: null,
-	},
 });
 
 export default mongoose.models.user || mongoose.model("user", UserSchema);
