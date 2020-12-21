@@ -1,12 +1,9 @@
 import { useAuth } from "components/AuthProvider";
 import { Title } from "components/Typography/index";
 import { AuthLinkButton } from "components/CTA";
-import { useRouter } from "next/router";
 
 export default function Home() {
 	const { authState } = useAuth();
-	const router = useRouter();
-	console.log("is auth in index :", authState.isAuth);
 
 	return (
 		<>
