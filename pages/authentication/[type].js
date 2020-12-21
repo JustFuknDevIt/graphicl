@@ -8,7 +8,6 @@ import { useRouter } from "next/router";
 
 const Authentication = ({ queryType, userId }) => {
 	const router = useRouter();
-
 	const { signIn } = useAuth();
 
 	useEffect(() => {

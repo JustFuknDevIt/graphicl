@@ -8,6 +8,8 @@ export const Feedback = ({}) => {
 		errorPolicy: "all",
 	});
 
+	console.log("data : ", data);
+
 	return (
 		<Layout>
 			{error && (

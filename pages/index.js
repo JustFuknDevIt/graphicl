@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 export default function Home() {
 	const { authState } = useAuth();
 	const router = useRouter();
+	console.log("is auth in index :", authState.isAuth);
 
 	return (
 		<>

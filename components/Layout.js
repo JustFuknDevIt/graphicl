@@ -13,12 +13,19 @@ const Layout = ({ children }) => {
 	const userId = authState.userId;
 
 	const pathname = router.pathname === "/" ? "Welcome" : router.pathname;
+	console.log("is auth in layout : ", isAuth);
 
-	useEffect(() => {
-		if (!isAuth) {
-			router.push("/");
-		}
-	}, [isAuth]);
+	useEffect(
+		() => {
+			if (!isAuth) {
+				console.log(
+					"You have the layout and you are not logged, you will be instant redirect to '/'"
+				);
+				router.push("/");
+			}
+		},
+		{ isAuth }
+	);
 
 	return (
 		<>

@@ -18,7 +18,6 @@ const Switch = () => {
 			if (isLogout) {
 				setToggleLogout(!toggleLogout);
 				signOut();
-				router.push("/");
 			}
 		});
 	};

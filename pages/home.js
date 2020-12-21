@@ -3,7 +3,7 @@ import Layout from "components/Layout";
 const Home = ({}) => {
 	return (
 		<Layout>
-			<div>Bienvenue sur Graphicl</div>
+			<div>Bienvenue sur Home page de Graphicl</div>
 		</Layout>
 	);
 };
