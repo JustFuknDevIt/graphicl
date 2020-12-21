@@ -22,7 +22,7 @@ export const Big = ({ children, color, weight }) => {
 	);
 };
 
-export const Normal = ({ children, color }) => {
+export const Regular = ({ children, color }) => {
 	return (
 		<p
 			className={`text-center text-base font-Cinzel-Variable-Font ${
