@@ -1,12 +1,13 @@
-import { Big } from "components/Typography";
+import { Big, Regular } from "components/Typography";
 import { request, gql } from "graphql-request";
 import AuthForm from "components/Forms/AuthForm";
 import Cookies from "cookies";
 import { useAuth } from "components/AuthProvider";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
-const Authentication = ({ queryType, userId }) => {
+const Authentication = ({ queryType, userId, errorMessage }) => {
 	const router = useRouter();
 	const { signIn } = useAuth();
 
@@ -23,7 +24,18 @@ const Authentication = ({ queryType, userId }) => {
 				<main className="h-2/5 flex flex-col justify-around">
 					{queryType === "finish" ? (
 						<Big>
-							Please wait until the redirect...
+							{errorMessage ? (
+								<>
+									{errorMessage} <br />
+									<br />
+									<br />
+									<Link href="/authentication/signin">
+										<Regular>Retry to Sign In !</Regular>
+									</Link>
+								</>
+							) : (
+								"Please wait until the redirect..."
+							)}
 							<br />
 						</Big>
 					) : (
@@ -40,6 +52,7 @@ export async function getServerSideProps({ req, res, query }) {
 	const token = query.token ? query.token : null;
 
 	let userId;
+	let errorMessage;
 
 	if (token) {
 		const Query = gql`
@@ -56,29 +69,37 @@ export async function getServerSideProps({ req, res, query }) {
 			temporaryToken: token,
 		};
 
-		await request("http://localhost:3000/api/graphql", Query, variables).then((payLoad) => {
-			const token = payLoad.finishAuthUser.token;
-			const expires = payLoad.finishAuthUser.expires;
-			const id = payLoad.finishAuthUser.userId;
+		try {
+			await request("http://localhost:3000/api/graphql", Query, variables).then((payLoad) => {
+				const token = payLoad.finishAuthUser.token;
+				const expires = payLoad.finishAuthUser.expires;
+				const id = payLoad.finishAuthUser.userId;
 
-			const cookies = new Cookies(req, res);
-			cookies.set("authToken", token, {
-				httpOnly: true, // true by default
-				//secure : true,
-				//sameSite : strict
-			});
-			cookies.set("expires", expires, {
-				httpOnly: true, // true by default
-				//secure : true,
-				//sameSite : strict
-			});
+				const cookies = new Cookies(req, res);
+				cookies.set("authToken", token, {
+					httpOnly: true, // true by default
+					//secure : true,
+					//sameSite : strict
+				});
+				cookies.set("expires", expires, {
+					httpOnly: true, // true by default
+					//secure : true,
+					//sameSite : strict
+				});
 
-			return (userId = id);
-		});
+				return (userId = id);
+			});
+		} catch (error) {
+			errorMessage = JSON.stringify(error.response.errors[0].message, undefined, 2);
+		}
 	}
 
 	return {
-		props: { queryType, userId: token ? userId : null },
+		props: {
+			queryType,
+			userId: token & !errorMessage ? userId : null,
+			errorMessage: errorMessage ? errorMessage : null,
+		},
 	};
 }
 

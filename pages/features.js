@@ -12,7 +12,7 @@ const Home = ({}) => {
 		if (!authState.isAuth) {
 			router.push("/");
 		}
-	});
+	}, [authState.isAuth]);
 
 	return (
 		authState.isAuth && (

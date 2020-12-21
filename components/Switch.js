@@ -28,8 +28,6 @@ const Switch = () => {
 		}
 	};
 
-	useEffect(() => {});
-
 	return (
 		<div className="flex flex-row justify-between items-center w-full">
 			<Short color={toggleLogout && "text-gunmetal-nopacity"}>Signed In</Short>
