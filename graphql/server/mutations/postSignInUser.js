@@ -12,6 +12,7 @@ const postSignInUser = async (email, username) => {
 		Date.now() + parseInt(process.env.AUTH_TOKEN_EXPIRY_SHORT) * 1000
 	);
 
+	console.log("authTokenExpiry sign In : ", authTokenExpiry);
 	foundUser.authToken.hash = authToken;
 	foundUser.authToken.expiry = authTokenExpiry;
 

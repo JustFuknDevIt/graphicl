@@ -6,6 +6,7 @@ import { useAuth } from "components/AuthProvider";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import Image from "next/image";
 
 const Authentication = ({ queryType, userId, errorMessage }) => {
 	const router = useRouter();
@@ -24,6 +25,12 @@ const Authentication = ({ queryType, userId, errorMessage }) => {
 
 	return (
 		<div className="flex flex-col w-screen h-screen justify-center items-center bg-lavender-blush">
+			<div className="absolute top-10 left-10">
+				<Link href="/">
+					<Image src="/static/svg/go-back.svg" alt="Go Back icons" width={64} height={64} />
+				</Link>
+			</div>
+
 			<div className="flex flex-col w-screen h-screen justify-center items-center">
 				<main className="h-2/5 flex flex-col justify-around">
 					{queryType === "finish" ? (

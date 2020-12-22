@@ -8,19 +8,19 @@ const postFinishAuthUser = async (temporaryToken) => {
 
 	let isAuthTokenValid = false;
 
-	const isMatch = temporaryToken === foundUser.authToken.hash ? true : false;
 	const isValid = foundUser.authToken.expiry > Date.now();
 
-	if (isMatch && isValid) {
+	if (isValid) {
 		isAuthTokenValid = true;
 	}
 
-	if (!isAuthTokenValid) throw new Error("Invalid Auth token");
+	if (!isAuthTokenValid) throw new Error("Invalid Auth token - Token expired");
 
 	const authToken = nanoid(42);
 	const authTokenExpiry = new Date(
 		Date.now() + parseInt(process.env.AUTH_TOKEN_EXPIRY_LONG) * 1000
 	);
+	console.log("authTokenExpiry finish auth : ", authTokenExpiry);
 
 	foundUser.authToken.hash = authToken;
 	foundUser.authToken.expiry = authTokenExpiry;
