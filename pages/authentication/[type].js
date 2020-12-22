@@ -59,7 +59,6 @@ const Authentication = ({ queryType, userId, errorMessage }) => {
 export async function getServerSideProps({ req, res, query }) {
 	const queryType = query.type;
 	const token = query.token ? query.token : null;
-
 	let userId;
 	let errorMessage;
 
