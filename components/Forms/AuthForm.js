@@ -1,49 +1,48 @@
-import { request, gql } from "graphql-request";
+import { useMutation } from "@apollo/client";
 import { Big, Short } from "components/Typography";
+import { SIGNIN_USER, REGISTER_USER } from "graphql/client/mutations";
 import { AuthConfirmButton } from "components/CTA";
 import { Input } from "components/Input";
 import { useState } from "react";
 
 const AuthForm = ({ type }) => {
 	const [message, setMessage] = useState(null);
+	const [signInUser] = useMutation(SIGNIN_USER);
+	const [registerUser] = useMutation(REGISTER_USER);
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		const { email, username } = event.target.elements;
+		const Query =
+			type === "signin"
+				? signInUser({ variables: { email: email.value, username: username.value } }).then(
+						(res) => {
+							let message = res.data.signInUser;
+							console.log("just before sending signin message :", message);
+							setMessage(message);
+							return message;
+						}
+				  )
+				: registerUser({ variables: { email: email.value, username: username.value } }).then(
+						(res) => {
+							let message = res.data.registerUser;
+							console.log("just beforr sending register message :", message);
+							setMessage(message);
+							return message;
+						}
+				  );
 
-		const SIGNIN_USER = gql`
-			mutation SignInUserMutation($email: String!, $username: String!) {
-				signInUser(email: $email, username: $username)
-			}
-		`;
-		const REGISTER_USER = gql`
-			mutation RegisterUserMutation($email: String!, $username: String!) {
-				registerUser(email: $email, username: $username)
-			}
-		`;
-
-		const Query = type === "signin" ? SIGNIN_USER : REGISTER_USER;
-
-		const variables = {
-			email: email.value,
-			username: username.value,
-		};
-
-		const data = await request("http://localhost:3000/api/graphql", Query, variables).then(
-			(res) => {
-				let message = type === "signin" ? res.signInUser : res.registerUser;
-				setMessage(message);
-				return message;
-			}
-		);
-		return data;
+		return Query;
 	};
 
 	return (
 		<>
 			<Big>Ready to {type === "signin" ? "Sign In" : type} ?</Big>
-			<div className=" w-full h-40 flex flex-col rounded-veryLarge p-6 justify-around items-center">
-				<form onSubmit={handleSubmit}>
+			<div className="w-full h-full flex flex-col justify-between">
+				<form
+					className="w-full h-full flex flex-col p-6 justify-around items-center"
+					onSubmit={handleSubmit}
+				>
 					<Input type="email" name="email" placeholder="your@mail.com" required />
 					<Input type="text" name="username" placeholder="username" required />
 					<AuthConfirmButton type="submit">
