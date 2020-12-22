@@ -17,14 +17,8 @@ const apolloServer = new ApolloServer({
 			const expiresToken = Date.parse(req.headers.cookie.split("; ")[1].split("=").pop());
 			const actualDate = Date.now();
 			const isExpired = actualDate > expiresToken;
-
-			if (isExpired) {
-				throw new Error("Your Token is Expired, Please Sign In !");
-			}
-
-			return { req, res, authToken, setCookies, setHeaders };
+			return { req, res, authToken, isExpired, setCookies, setHeaders };
 		}
-
 		return { req, setCookies, setHeaders };
 	},
 	playground: true,

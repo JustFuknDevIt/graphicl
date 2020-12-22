@@ -1,5 +1,5 @@
 import { Short } from "./Typography";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { SIGNOUT_USER } from "graphql/client/mutations";
 import { useAuth } from "components/AuthProvider";

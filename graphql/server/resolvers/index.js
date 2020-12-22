@@ -8,7 +8,11 @@ import postSignOutUser from "../mutations/postSignOutUser";
 
 const resolvers = {
 	Query: {
-		getUser: async (_, { userId }) => {
+		getUser: async (_, { userId }, { authToken, isExpired }) => {
+			if (!authToken)
+				throw new Error("You need to be Auth for this request ! Please sign in and retry !");
+			if (isExpired) throw new Error("Your Token is Expired, Please Sign In !");
+
 			const foundUser = await User.findOne({ _id: userId });
 			if (!foundUser) throw new Error("No User with this ID !");
 			return foundUser;
@@ -28,10 +32,7 @@ const resolvers = {
 			const newUser = await postFinishAuthUser(temporaryToken);
 			return newUser;
 		},
-		signOutUser: async (_, { userId }, { authToken, req, res }) => {
-			if (!authToken) {
-				throw new Error("You are not logged. Please Sign In !");
-			}
+		signOutUser: async (_, { userId }, { req, res }) => {
 			const result = await postSignOutUser(userId);
 
 			if (result) {
@@ -54,10 +55,11 @@ const resolvers = {
 				return false;
 			}
 		},
-		updateUser: async (_, { userId, input }, { authToken }) => {
-			if (!authToken) {
+		updateUser: async (_, { userId, input }, { authToken, isExpired }) => {
+			if (!authToken)
 				throw new Error("You need to be Auth for this request ! Please sign in and retry !");
-			}
+
+			if (isExpired) throw new Error("Your Token is Expired, Please Sign In !");
 
 			const updateUser = await postUpdateUser(userId, input);
 			return updateUser;
