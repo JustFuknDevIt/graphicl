@@ -14,13 +14,31 @@ const Profile = ({ userId }) => {
 		variables: { userId: userId },
 		errorPolicy: "all",
 	});
-
 	const [avatar, setAvatar] = useState(
 		data ? data.getUser.avatarOptions : getRandomAvatarOptions()
 	);
 	const [username, setUsername] = useState(data ? data.getUser.username : "username");
 	const [email, setEmail] = useState(data ? data.getUser.email : "email");
 	const [editView, setEditView] = useState(false);
+
+	const handleSubmit = async (event, newAvatar) => {
+		event.preventDefault();
+
+		const updatedInput = newAvatar
+			? { avatarOptions: newAvatar }
+			: {
+					username: event.target.elements.username.value,
+					email: event.target.elements.email.value,
+			  };
+
+		updateUser({ variables: { userId: userId, input: updatedInput } }).then((response) => {
+			const { avatarOptions, username, email } = response.data.updateUser;
+			setAvatar(avatarOptions);
+			setUsername(username);
+			setEmail(email);
+			setEditView(editView && !editView);
+		});
+	};
 
 	useEffect(() => {
 		if (data) {
@@ -32,31 +50,6 @@ const Profile = ({ userId }) => {
 
 	if (loading) return <Big>Loading...</Big>;
 	if (error) return <Big>{error}</Big>;
-
-	const handleSubmit = async (event, newAvatar) => {
-		if (newAvatar) {
-			const updatedInput = {
-				avatarOptions: newAvatar,
-			};
-			updateUser({ variables: { userId: userId, input: updatedInput } }).then((response) => {
-				const { avatarOptions } = response.data.updateUser;
-				avatarOptions && setAvatar(avatarOptions);
-			});
-		} else {
-			event.preventDefault();
-			const { email, username } = event.target.elements;
-			const updatedInput = {
-				username: username.value,
-				email: email.value,
-			};
-			updateUser({ variables: { userId: userId, input: updatedInput } }).then((response) => {
-				const { username, email } = response.data.updateUser;
-				username && setUsername(username);
-				email && setEmail(email);
-				setEditView(!editView);
-			});
-		}
-	};
 
 	return (
 		<div className="w-full h-full flex flex-col items-center">
