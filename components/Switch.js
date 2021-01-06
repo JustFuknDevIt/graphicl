@@ -30,7 +30,7 @@ const Switch = () => {
 
 	return (
 		<div className="flex flex-row justify-between items-center w-full">
-			<Short color={toggleLogout && "text-gunmetal-nopacity"}>Signed In</Short>
+			<Short color={!toggleLogout && "text-gunmetal-nopacity"}>Signed In</Short>
 			<div
 				onClick={() => handleToggle()}
 				className={`w-16 h-4 flex items-center bg-gray-300 rounded-full p-1 duration-1000 ease-in-out ${
@@ -43,7 +43,7 @@ const Switch = () => {
 					} `}
 				/>
 			</div>
-			<Short color={!toggleLogout && "text-gunmetal-nopacity"}>Logout</Short>
+			<Short color={toggleLogout && "text-gunmetal-nopacity"}>Logout</Short>
 		</div>
 	);
 };
