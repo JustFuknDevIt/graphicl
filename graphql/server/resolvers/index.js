@@ -40,14 +40,14 @@ const resolvers = {
 				cookies.set("authToken", "", {
 					httpOnly: true,
 					expires: new Date(0),
-					secure: true,
-					sameSite: true,
+					//secure: true,
+					//sameSite: true,
 				});
 				cookies.set("expires", "", {
 					httpOnly: true,
 					expires: new Date(0),
-					secure: true,
-					sameSite: true,
+					//secure: true,
+					//sameSite: true,
 				});
 				cookies;
 				return true;

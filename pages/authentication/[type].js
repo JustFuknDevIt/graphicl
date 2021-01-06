@@ -88,13 +88,13 @@ export async function getServerSideProps({ req, res, query }) {
 				const cookies = new Cookies(req, res);
 				cookies.set("authToken", token, {
 					httpOnly: true,
-					secure: true,
-					sameSite: true,
+					//secure: true,
+					//sameSite: true,
 				});
 				cookies.set("expires", expires, {
 					httpOnly: true,
-					secure: true,
-					sameSite: true,
+					//secure: true,
+					//sameSite: true,
 				});
 
 				return (userId = id);
