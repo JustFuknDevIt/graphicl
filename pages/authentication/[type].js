@@ -80,7 +80,7 @@ export async function getServerSideProps({ req, res, query }) {
 		};
 
 		try {
-			await request("http://localhost:3000/api/graphql", Query, variables).then((payLoad) => {
+			await request("https://graphicl.vercel.app/api/graphql", Query, variables).then((payLoad) => {
 				const token = payLoad.finishAuthUser.token;
 				const expires = payLoad.finishAuthUser.expires;
 				const id = payLoad.finishAuthUser.userId;
@@ -89,12 +89,12 @@ export async function getServerSideProps({ req, res, query }) {
 				cookies.set("authToken", token, {
 					httpOnly: true,
 					secure: true,
-					sameSite: strict,
+					sameSite: true,
 				});
 				cookies.set("expires", expires, {
 					httpOnly: true,
 					secure: true,
-					sameSite: strict,
+					sameSite: true,
 				});
 
 				return (userId = id);
