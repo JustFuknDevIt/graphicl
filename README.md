@@ -7,8 +7,16 @@ First, add next.config.js to the root of the folder project :
 
 ```bash
 module.exports = {
-	env: {
-		MONGO_URI: "mongodb://localhost:27017/YourDataBase",
+		env: {
+		BASE_URL: "http://yourUrl.com/",
+		MONGO_URI:
+			"YourMongoDBURI",
+		AUTH_TOKEN_EXPIRY_SHORT: 1200,
+		AUTH_TOKEN_EXPIRY_LONG: 14400,
+		EMAIL_SERVER_USER: "YourEmailServerUser",
+		EMAIL_SERVER_PASSWORD: "YourEmailServerPassword",
+		EMAIL_SERVER_HOST: "YourEmailServerHost",
+		EMAIL_SERVER_PORT: 'YourEmailServerPort',
 	},
 };
 ```
