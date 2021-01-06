@@ -1,4 +1,5 @@
 export const Input = ({ type, name, required, placeholder, minLength, maxLength }) => {
+	const matchMoreThanPhone = screen.width >= 768;
 	return (
 		<input
 			type={type}
@@ -7,7 +8,8 @@ export const Input = ({ type, name, required, placeholder, minLength, maxLength 
 			placeholder={placeholder}
 			minLength={minLength}
 			maxLength={maxLength}
-			className="rounded-full py-1 px-3  flex justify-center items-center  border-gray-900 shadow-lg"
+			style={!matchMoreThanPhone && { width: "120px" }}
+			className="rounded-full py-1 px-3 flex justify-center items-center border-gray-900 shadow-lg"
 		/>
 	);
 };

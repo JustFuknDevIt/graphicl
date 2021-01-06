@@ -25,9 +25,9 @@ const Layout = ({ children }) => {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			{isAuth ? (
-				<div className="flex flex-row w-screen h-screen justify-between items-center">
-					<div className="w-3/12 h-full flex flex-col items-center p-8 shadow-lg bg-lavender-web">
-						<div className="h-20 flex flex-col items-center">
+				<div className="flex flex-col md:flex-row w-screen h-screen justify-between items-center">
+					<div className="w-full md:w-3/12 h-1/3 md:h-full flex flex-col md:flex-row md:items-center p-1 md:p-8 shadow-lg bg-lavender-web">
+						<div className=" md:h-20 flex flex-col items-center">
 							<Title>GraphiCL</Title>
 							<Short>Fullstack & Serverless Boilerplate</Short>
 						</div>

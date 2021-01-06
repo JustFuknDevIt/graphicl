@@ -25,7 +25,7 @@ export const RandomizeButton = ({ children, onClick }) => {
 	return (
 		<button
 			onClick={onClick}
-			className="rounded-full py-3 px-6  flex justify-center items-center bg-lavender-default border-gray-900 shadow-lg"
+			className="rounded-full py-1 md:py-3 px-2 md:px-6 flex justify-center items-center bg-lavender-default border-gray-900 shadow-lg"
 		>
 			{children}
 		</button>
