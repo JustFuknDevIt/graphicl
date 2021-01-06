@@ -10,7 +10,6 @@ import { Input } from "components/Input";
 
 const Profile = ({ userId }) => {
 	const matchMoreThanPhone = screen.width >= 768;
-	console.log("matchMoreThanPhone ? ", matchMoreThanPhone);
 
 	const [updateUser] = useMutation(UPDATE_USER);
 	const { loading, error, data } = useQuery(GET_USER, {
@@ -57,7 +56,7 @@ const Profile = ({ userId }) => {
 	return (
 		<div className="w-full h-full flex flex-col md:items-center">
 			<div className="md:my-12 w-full h-full flex flex-row md:flex-col justify-between md:items-center">
-				<div className="flex flex-col md:flex-row items-center w-2/4">
+				<div className="flex flex-col items-center w-2/4">
 					<Avatar
 						style={
 							matchMoreThanPhone
@@ -84,14 +83,14 @@ const Profile = ({ userId }) => {
 					<RandomizeButton onClick={() => handleSubmit(event, avatar)}>Save</RandomizeButton>
 				</div>
 				<form
-					className="md:h-full w-3/5 md:w-full flex flex-row-reverse md:flex-col justify-end items-center"
+					className="md:h-full w-3/5 md:w-full flex flex-col justify-end items-center"
 					onSubmit={handleSubmit}
 				>
 					<div className="md:h-1/5 w-full flex flex-col md:flex-row justify-end items-end">
 						{!editView ? (
 							<EditButton onClick={() => setEditView(!editView)} />
 						) : (
-							<div className="w-2/3 md:w-1/3 flex flex-col md:flex-row justify-around md:justify-between">
+							<div className="w-2/3 md:w-1/3 flex flex-row justify-around md:justify-between">
 								<CancelButton onClick={() => setEditView(!editView)} />
 								<SaveButton />
 							</div>

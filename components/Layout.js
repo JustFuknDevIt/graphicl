@@ -26,7 +26,7 @@ const Layout = ({ children }) => {
 			</Head>
 			{isAuth ? (
 				<div className="flex flex-col md:flex-row w-screen h-screen justify-between items-center">
-					<div className="w-full md:w-3/12 h-auto md:h-full flex flex-col md:flex-row md:items-center p-3 md:p-8 shadow-lg bg-lavender-web">
+					<div className="w-full md:w-3/12 h-auto md:h-full flex flex-col md:items-center p-3 md:p-8 shadow-lg bg-lavender-web">
 						<div className="md:h-20 flex flex-col items-center">
 							<Title>GraphiCL</Title>
 							<Short>Fullstack & Serverless Boilerplate</Short>

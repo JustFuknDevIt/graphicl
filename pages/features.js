@@ -16,10 +16,10 @@ const Home = ({}) => {
 
 	return (
 		authState.isAuth && (
-			<div className="h-full w-full pt-16 flex flex-col justify-around items-center">
-				<Big>Boilerplate designed with</Big>
-				<div className="h-full w-full flex flex-row justify-between px-2">
-					<div className="h-full w-full p-2 flex flex-col justify-center items-center">
+			<>
+				<Big>Build With</Big>
+				<div className="h-auto w-full p-4 md:pt-16 flex flex-col md:flex-row md:justify-around overflow-y-auto">
+					<div className="h-auto w-full p-2 flex flex-col justify-center items-center">
 						<CardFeature name="React" text="used with Hooks and love" />
 						<CardFeature name="Next.js" text="as Serverless Framework" />
 						<CardFeature name="GraphQL Server" text="like API of the future" />
@@ -27,7 +27,7 @@ const Home = ({}) => {
 						<CardFeature name="Passwordless Authentication" text="Based on cookies" />
 					</div>
 
-					<div className="h-full w-full p-2 flex flex-col justify-center items-center">
+					<div className="h-auto w-full p-2 flex flex-col justify-center items-center">
 						<CardFeature name="NodeMailer" text="for send user authentication mail" />
 						<CardFeature name="Tailwind" text="To have gloossy UI" />
 						<CardFeature name="MongoDB" text="provided by Mongo Atlas Cloud" />
@@ -35,7 +35,7 @@ const Home = ({}) => {
 						<CardFeature name="Avataaars" text="to give you a means of expression" />
 					</div>
 				</div>
-			</div>
+			</>
 		)
 	);
 };

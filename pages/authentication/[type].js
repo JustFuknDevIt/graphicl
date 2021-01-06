@@ -27,7 +27,9 @@ const Authentication = ({ queryType, userId, errorMessage }) => {
 		<div className="flex flex-col w-screen h-screen justify-center items-center bg-lavender-blush">
 			<div className="absolute top-10 left-10">
 				<Link href="/">
-					<Image src="/static/svg/go-back.svg" alt="Go Back icons" width={64} height={64} />
+					<div className="w-10 md:w-20">
+						<Image src="/static/svg/go-back.svg" alt="Go Back icons" layout="fill" />
+					</div>
 				</Link>
 			</div>
 

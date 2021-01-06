@@ -1,7 +1,7 @@
 export const Title = ({ children, color }) => {
 	return (
 		<p
-			className={`text-xl md:text-6xl font-Cinzel-Variable-Font tracking-title ${
+			className={`text-xl md:text-4xl font-Cinzel-Variable-Font tracking-title ${
 				color ? color : "text-gunmetal-deep"
 			}`}
 		>

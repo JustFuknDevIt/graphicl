@@ -18,7 +18,6 @@ const AuthForm = ({ type }) => {
 				? signInUser({ variables: { email: email.value, username: username.value } }).then(
 						(res) => {
 							let message = res.data.signInUser;
-							console.log("just before sending signin message :", message);
 							setMessage(message);
 							return message;
 						}
@@ -26,7 +25,6 @@ const AuthForm = ({ type }) => {
 				: registerUser({ variables: { email: email.value, username: username.value } }).then(
 						(res) => {
 							let message = res.data.registerUser;
-							console.log("just beforr sending register message :", message);
 							setMessage(message);
 							return message;
 						}

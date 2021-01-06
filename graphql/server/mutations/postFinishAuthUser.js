@@ -20,7 +20,6 @@ const postFinishAuthUser = async (temporaryToken) => {
 	const authTokenExpiry = new Date(
 		Date.now() + parseInt(process.env.AUTH_TOKEN_EXPIRY_LONG) * 1000
 	);
-	console.log("authTokenExpiry finish auth : ", authTokenExpiry);
 
 	foundUser.authToken.hash = authToken;
 	foundUser.authToken.expiry = authTokenExpiry;
