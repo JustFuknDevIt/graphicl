@@ -8,7 +8,6 @@ First, add next.config.js to the root of the folder project :
 ```bash
 module.exports = {
 		env: {
-		BASE_URL: "http://yourUrl.com/",
 		MONGO_URI:
 			"YourMongoDBURI",
 		AUTH_TOKEN_EXPIRY_SHORT: 1200,
