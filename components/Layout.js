@@ -26,17 +26,17 @@ const Layout = ({ children }) => {
 			</Head>
 			{isAuth ? (
 				<div className="flex flex-col md:flex-row w-screen h-screen justify-between items-center">
-					<div className="w-full md:w-3/12 h-1/3 md:h-full flex flex-col md:flex-row md:items-center p-1 md:p-8 shadow-lg bg-lavender-web">
-						<div className=" md:h-20 flex flex-col items-center">
+					<div className="w-full md:w-3/12 h-2/5 md:h-full flex flex-col md:flex-row md:items-center p-1 md:p-8 shadow-lg bg-lavender-web">
+						<div className="md:h-20 flex flex-col items-center">
 							<Title>GraphiCL</Title>
 							<Short>Fullstack & Serverless Boilerplate</Short>
 						</div>
 						<Profile userId={userId} />
 					</div>
-					<div className="w-7/12 h-full flex flex-col justify-center items-center p4">
+					<div className="w-full md:w-7/12 h-auto overflow-y-auto md:h-full flex flex-col justify-center items-center p-2 md:p-4">
 						{children}
 					</div>
-					<div className="w-2/12 h-full flex flex-col justify-around items-center p-4 shadow-lg bg-lavender-web">
+					<div className="w-full md:w-2/12 h-1/3 md:h-full flex flex-col justify-around md:items-center p-2 md:p-4 shadow-lg bg-lavender-web">
 						<Menu />
 					</div>
 				</div>
