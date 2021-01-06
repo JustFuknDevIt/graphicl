@@ -21,7 +21,7 @@ const connectDb = (handler) => async (req, res) => {
 const db = mongoose.connection;
 
 db.once("open", () => {
-	console.log("MongoDB connected.");
+	console.log("MongoDB is now connected.");
 });
 
 export default connectDb;
