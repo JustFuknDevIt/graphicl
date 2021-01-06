@@ -87,14 +87,14 @@ export async function getServerSideProps({ req, res, query }) {
 
 				const cookies = new Cookies(req, res);
 				cookies.set("authToken", token, {
-					httpOnly: true, // true by default
-					//secure : true,
-					//sameSite : strict
+					httpOnly: true,
+					secure: true,
+					sameSite: strict,
 				});
 				cookies.set("expires", expires, {
-					httpOnly: true, // true by default
-					//secure : true,
-					//sameSite : strict
+					httpOnly: true,
+					secure: true,
+					sameSite: strict,
 				});
 
 				return (userId = id);

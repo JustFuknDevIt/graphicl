@@ -38,16 +38,16 @@ const resolvers = {
 			if (result) {
 				const cookies = new Cookies(req, res);
 				cookies.set("authToken", "", {
-					httpOnly: true, // true by default
+					httpOnly: true,
 					expires: new Date(0),
-					//secure : true,
-					//sameSite : strict
+					secure: true,
+					sameSite: strict,
 				});
 				cookies.set("expires", "", {
-					httpOnly: true, // true by default
+					httpOnly: true,
 					expires: new Date(0),
-					//secure : true,
-					//sameSite : strict
+					secure: true,
+					sameSite: strict,
 				});
 				cookies;
 				return true;

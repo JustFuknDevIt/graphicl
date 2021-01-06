@@ -38,6 +38,7 @@ const Home = ({}) => {
 				<a href="https://twitter.com/JustFuknDevIt">
 					<Short>@JustFuknDevIt</Short>
 				</a>
+				<br />
 			</div>
 		)
 	);
