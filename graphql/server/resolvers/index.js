@@ -38,12 +38,12 @@ const resolvers = {
 			if (result) {
 				const cookies = new Cookies(req, res);
 				cookies.set("authToken", "", {
-					httpOnly: true,
+					httpOnly: false,
 					expires: new Date(0),
 					secure: true,
 				});
 				cookies.set("expires", "", {
-					httpOnly: true,
+					httpOnly: false,
 					expires: new Date(0),
 					secure: true,
 				});
