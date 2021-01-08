@@ -41,13 +41,11 @@ const resolvers = {
 					httpOnly: true,
 					expires: new Date(0),
 					secure: true,
-					sameSite: true,
 				});
 				cookies.set("expires", "", {
 					httpOnly: true,
 					expires: new Date(0),
 					secure: true,
-					sameSite: true,
 				});
 				cookies;
 				return true;
